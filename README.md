@@ -4,7 +4,7 @@
 
 |Column             |Type    |Options                   |
 |-------------------|--------|--------------------------|
-|nickname           |string  |null: false, unique: true |
+|nickname           |string  |null: false               |
 |email              |string  |null: false, unique: true |
 |encrypted_password |string  |null: false               |
 |first_name         |string  |null: false               |
@@ -23,7 +23,7 @@ has_many :items
 |-------------------|--------------|-------------------------------|
 |name               |string        |null: false                    |
 |description        |text          |null: false                    |
-|category           |string        |null: false                    |
+|category_id        |integer       |null: false                    |
 |state_id           |integer       |null: false                    |
 |ship_pay_id        |integer       |null: false                    |
 |prefecture_id      |integer       |null: false                    |
@@ -51,7 +51,7 @@ has_one :ship_address
 
 |Column          |Type       |Options                        |
 |----------------|-----------|-------------------------------|
-|postal_code     |integer    |null: false                    |
+|postal_code     |string     |null: false                    |
 |prefecture_id   |integer    |null: false                    |
 |city            |string     |null: false                    |
 |address         |string     |null: false                    |
