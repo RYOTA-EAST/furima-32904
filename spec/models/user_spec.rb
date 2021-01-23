@@ -87,7 +87,6 @@ RSpec.describe User, type: :model do
       it 'first_nameが半角文字では登録できない' do
         @user.first_name = 'ﾏｲｹﾙ'
         @user.valid?
-        # binding.pry
         expect(@user.errors.full_messages).to include('First name 全角文字を使用してください')
       end
 
