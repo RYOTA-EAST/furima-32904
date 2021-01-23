@@ -83,7 +83,6 @@ RSpec.describe Item, type: :model do
       it '価格が全角数字だと出品できない' do
         @item.price = '３００'
         @item.valid?
-        # binding.pry
         expect(@item.errors.full_messages).to include('Price 入力値が300~9999999の範囲外です', 'Price is not a number')
       end
     end
