@@ -15,6 +15,7 @@ class Item < ApplicationRecord
     validates :description
     validates :user
     validates :image
+    validates :price
   end
   with_options numericality: { other_than: 1 } do
     validates :category_id
@@ -23,6 +24,9 @@ class Item < ApplicationRecord
     validates :prefecture_id
     validates :ship_day_id
   end
+
+  validates :price, numericality: { only_integer: true }
+
     validates :price,
     :numericality => {
       :greater_than_or_equal_to => 300,
