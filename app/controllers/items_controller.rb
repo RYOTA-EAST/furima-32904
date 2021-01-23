@@ -1,9 +1,10 @@
 class ItemsController < ApplicationController
+  before_action :move_to_login, only: :new
+
   def index
   end
 
   def new
-    authenticate_user!
     @item = Item.new
   end
 
@@ -21,5 +22,9 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:name, :description, :category_id, :state_id, :ship_pay_id, :prefecture_id, :ship_day_id,
                                  :price, :image).merge(user_id: current_user.id)
+  end
+
+  def move_to_login
+    authenticate_user!
   end
 end
