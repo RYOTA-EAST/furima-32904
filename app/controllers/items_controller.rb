@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :move_to_login, only: [:new, :create]
-  before_action :set_item, only: :show
+  before_action :move_to_login, only: [:new, :create, :edit, :create]
+  before_action :set_item, only: [:show, :edit, :create, :update]
+  before_action :move_to_index, only: [:edit, :update]
 
   def index
     @item = Item.all.includes(:user).order(id: 'DESC')
@@ -22,6 +23,17 @@ class ItemsController < ApplicationController
   def show
   end
 
+  def edit
+  end
+
+  def update
+    if @item.update(item_params)
+      redirect_to item_path(@item.id)
+    else
+      render :edit
+    end
+  end
+
   private
 
   def item_params
@@ -35,5 +47,10 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def move_to_index
+    item = Item.find(params[:id])
+    redirect_to root_path unless current_user == item.user
   end
 end
