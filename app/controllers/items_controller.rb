@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :move_to_login, only: [:new, :create]
+  before_action :set_item, only: :show
 
   def index
     @item = Item.all.includes(:user).order(id: 'DESC')
@@ -12,10 +13,13 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to root_path
+      redirect_to item_path(@item.id)
     else
       render :new
     end
+  end
+
+  def show
   end
 
   private
@@ -27,5 +31,9 @@ class ItemsController < ApplicationController
 
   def move_to_login
     authenticate_user!
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 end
