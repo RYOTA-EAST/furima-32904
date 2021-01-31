@@ -66,4 +66,6 @@ gem 'image_processing', '~> 1.2'
 
 gem 'active_hash'
 
+gem 'payjp'
+
 # gem 'diff-lcs','1.4.4'
