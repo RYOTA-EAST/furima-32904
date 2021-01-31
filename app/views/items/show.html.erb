@@ -26,7 +26,7 @@
       </span>
     </div>
 
-    <%# ログイン有無、ユーザーで表示を変更 %>
+    <%# ログイン有無、ユーザー、商品の購入状態で表示変更 %>
     <% if user_signed_in? %>
       <% unless Order.exists?(item_id: @item.id) %>
         <% if current_user == @item.user %>

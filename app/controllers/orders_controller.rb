@@ -5,11 +5,6 @@ class OrdersController < ApplicationController
 
   def index
     @item_order = ItemOrder.new
-    # form_wirh繋がってる
-  end
-
-  def new
-    # ここにあった.newをindex
   end
 
   def create
@@ -29,8 +24,6 @@ class OrdersController < ApplicationController
     params.require(:item_order).permit(:postal_code, :prefecture_id, :city, :address, :explosive, :phone_number).merge(
       user_id: current_user.id, item_id: @item.id, token: params[:token]
     )
-    # requireがない
-    # idを結合させた
   end
 
   def pay_order
