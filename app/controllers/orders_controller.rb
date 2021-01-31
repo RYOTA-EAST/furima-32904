@@ -1,6 +1,9 @@
 class OrdersController < ApplicationController
+  before_action :move_to_login, only: [:index, :create]
+  before_action :set_item, only: [:index, :create]
+  before_action :move_to_root, only: [:index, :create]
+
   def index
-    @item = Item.find(params[:item_id])
     @item_order = ItemOrder.new
     #form_wirh繋がってる
   end
@@ -10,7 +13,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-      @item = Item.find(params[:item_id])
       @item_order = ItemOrder.new(order_params)
       if @item_order.valid?
       pay_order
@@ -35,6 +37,20 @@ class OrdersController < ApplicationController
       card: order_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def move_to_login
+    authenticate_user!
+  end
+  
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
+
+  def move_to_root
+    if current_user == @item.user || Order.exists?(item_id: @item.id)
+    redirect_to root_path 
+    end
   end
 
 end
