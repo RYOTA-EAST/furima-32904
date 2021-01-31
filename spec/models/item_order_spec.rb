@@ -6,7 +6,7 @@ RSpec.describe ItemOrder, type: :model do
       @item_order = FactoryBot.build(:item_order)
     end
 
-    describe "保存できる場合" do
+    describe '保存できる場合' do
       it 'すべての値が正しく入力されていれば保存できる' do
         expect(@item_order).to be_valid
       end
@@ -15,12 +15,12 @@ RSpec.describe ItemOrder, type: :model do
         expect(@item_order).to be_valid
       end
       it '電話番号は10桁でも保存できる' do
-        @item_order.phone_number = "0120121234"
+        @item_order.phone_number = '0120121234'
         expect(@item_order).to be_valid
       end
     end
 
-    describe "保存できない場合" do
+    describe '保存できない場合' do
       it 'tokenが空だと保存できない' do
         @item_order.token = nil
         @item_order.valid?
@@ -32,9 +32,9 @@ RSpec.describe ItemOrder, type: :model do
         expect(@item_order.errors.full_messages).to include("Postal code can't be blank")
       end
       it '郵便番号にハイフンがないと保存できない' do
-        @item_order.postal_code = "1234567"
+        @item_order.postal_code = '1234567'
         @item_order.valid?
-        expect(@item_order.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@item_order.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
       it '都道府県が選択されていないと保存できない' do
         @item_order.prefecture_id = 1
@@ -59,14 +59,13 @@ RSpec.describe ItemOrder, type: :model do
       it '電話番号が12文字以上だと保存できない' do
         @item_order.phone_number = '080456790123'
         @item_order.valid?
-        expect(@item_order.errors.full_messages).to include("Phone number is up to 11 characters with numbers only")
+        expect(@item_order.errors.full_messages).to include('Phone number is up to 11 characters with numbers only')
       end
       it '電話番号にハイフンが入っていると保存できない' do
-        @item_order.phone_number ='0120-67-901'
+        @item_order.phone_number = '0120-67-901'
         @item_order.valid?
-        expect(@item_order.errors.full_messages).to include("Phone number is up to 11 characters with numbers only")
+        expect(@item_order.errors.full_messages).to include('Phone number is up to 11 characters with numbers only')
       end
     end
-
   end
 end
