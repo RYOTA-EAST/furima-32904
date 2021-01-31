@@ -7,7 +7,7 @@ class ItemOrder
     validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)" }
     validates :city
     validates :address
-    validates :phone_number, format: { with: /\A\d{11}\z/, message: "電話番号は１１桁以内です" }
+    validates :phone_number, format: { with: /\A\d{1,11}\z/, message: "is up to 11 characters with numbers only" }
     validates :token
   end
 
