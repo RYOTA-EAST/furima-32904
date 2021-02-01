@@ -5,8 +5,8 @@ RSpec.describe ItemOrder, type: :model do
     before do
       @user = FactoryBot.create(:user)
       @item = FactoryBot.create(:item)
-      @item_order = FactoryBot.build(:item_order, user_id: @user.id, item_id: @item.id )
-      sleep 0.1 #０.1秒待機
+      @item_order = FactoryBot.build(:item_order, user_id: @user.id, item_id: @item.id)
+      sleep 0.1 # ０.1秒待機
     end
 
     describe '保存できる場合' do
