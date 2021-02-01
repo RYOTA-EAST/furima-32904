@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :move_to_login, only: [:index, :create]
+  before_action :authenticate_user!, only: [:index, :create]
   before_action :set_item, only: [:index, :create]
   before_action :move_to_root, only: [:index, :create]
 
@@ -33,10 +33,6 @@ class OrdersController < ApplicationController
       card: order_params[:token],
       currency: 'jpy'
     )
-  end
-
-  def move_to_login
-    authenticate_user!
   end
 
   def set_item
