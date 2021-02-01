@@ -27,8 +27,7 @@
     </div>
 
     <%# ログイン有無、ユーザー、商品の購入状態で表示変更 %>
-    <% if user_signed_in? %>
-      <% unless Order.exists?(item_id: @item.id) %>
+    <% if user_signed_in? && !(Order.exists?(item_id: @item.id)) %>
         <% if current_user == @item.user %>
           <%# 商品編集・削除ボタン %>
           <%= link_to '商品の編集', edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
@@ -38,7 +37,6 @@
           <%# 商品購入ボタン %>
           <%= link_to '購入画面に進む', item_orders_path(@item.id) ,class:"item-red-btn"%>
         <% end %>
-      <% end %>
     <% end %>
 
 
