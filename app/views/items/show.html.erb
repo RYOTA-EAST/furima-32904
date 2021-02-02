@@ -10,7 +10,7 @@
       <%= image_tag @item.image ,class:"item-box-img" %>
 
       <%# 商品が売れている場合は、sold out表示 %>
-      <% if Order.exists?(item_id: @item.id) %>
+      <% if @item.order.present? %>
         <div class='sold-out'>
           <span>Sold Out!!</span>
         </div>
@@ -27,7 +27,7 @@
     </div>
 
     <%# ログイン有無、ユーザー、商品の購入状態で表示変更 %>
-    <% if user_signed_in? && !(Order.exists?(item_id: @item.id)) %>
+    <% if user_signed_in? && !(@item.order.present?) %>
         <% if current_user == @item.user %>
           <%# 商品編集・削除ボタン %>
           <%= link_to '商品の編集', edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
