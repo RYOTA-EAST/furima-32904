@@ -64,6 +64,11 @@ RSpec.describe ItemOrder, type: :model do
         @item_order.valid?
         expect(@item_order.errors.full_messages).to include('Phone number is up to 11 characters with numbers only')
       end
+      it '電話番号が全角だと保存できない' do
+        @item_order.phone_number = '０８０４５６７８９０１'
+        @item_order.valid?
+        expect(@item_order.errors.full_messages).to include('Phone number is up to 11 characters with numbers only')
+      end
       it '電話番号にハイフンが入っていると保存できない' do
         @item_order.phone_number = '0120-67-901'
         @item_order.valid?
