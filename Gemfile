@@ -68,4 +68,6 @@ gem 'active_hash'
 
 gem 'payjp'
 
+gem 'aws-sdk-s3', require: false
+
 # gem 'diff-lcs','1.4.4'
