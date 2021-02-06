@@ -71,3 +71,7 @@ gem 'payjp'
 gem 'aws-sdk-s3', require: false
 
 # gem 'diff-lcs','1.4.4'
+
+group :production do
+  gem 'unicorn', '5.4.1'
+end
