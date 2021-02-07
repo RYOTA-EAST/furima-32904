@@ -2,25 +2,26 @@
 
 <%= form_with model: @user, url: '/users', class: 'registration-main', local: true do |f| %>
 <div class='form-wrap'>
+    <div class="sns">
+      <div class="facebook">
+        <%= fa_icon "facebook-square" %>
+        <%= link_to "Facebookで登録", user_facebook_omniauth_authorize_path, method: :post, class: "facebook" %>
+      </div>
+      <div class="google">
+        <%= fa_icon "google" %>
+        <%= link_to "Googleで登録", user_google_oauth2_omniauth_authorize_path, method: :post %>
+      </div>
+    </div>
   <div class='form-header'>
     <h1 class='form-header-text'>
       会員情報入力
     </h1>
-      
-  <%= link_to "Facebookで登録", user_facebook_omniauth_authorize_path, method: :post%>
-  <%= link_to "Googleで登録", user_google_oauth2_omniauth_authorize_path, method: :post%>
+
+
+  </div>
   
-  </div>
 
-  <%= render 'shared/error_messages', model: f.object %>
-
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">ニックネーム</label>
-      <span class="indispensable">必須</span>
-    </div>
-    <%= f.text_area :nickname, class:"input-default", id:"nickname", placeholder:"例) furima太郎", maxlength:"40" %>
-  </div>
+<%= render 'shared/error_messages', model: f.object %>
   <div class="form-group">
     <div class='form-text-wrap'>
       <label class="form-text">メールアドレス</label>
